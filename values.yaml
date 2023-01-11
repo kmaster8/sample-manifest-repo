@@ -1,13 +1,13 @@
 hello:
   hello:
     image:
-      repository: gchr.io/kmaster8/myimage
-      tag: "1.0"
+      repository: ghcr.io/kmaster8/myimage
+      tag: "52e4a79f51aea271273b526fbef4a3e13435e57b"
   ports:
-  - name: http
-    nodePort: 30050
-    port: 5000
-    protocol: TCP
-    targetPort: 5000
+    - name: http
+      nodePort: 30050
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
   replicas: 1
   type: NodePort
