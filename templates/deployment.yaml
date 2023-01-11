@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mychart.fullname" . }}-hello
+  labels:
+    app: hello
+  {{- include "mychart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.hello.replicas }}
+  selector:
+    matchLabels:
+      app: hello
+    {{- include "mychart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: hello
+      {{- include "mychart.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: {{ .Values.hello.hello.image.repository }}:{{ .Values.hello.hello.image.tag
+          | default .Chart.AppVersion }}
+        imagePullPolicy: Always
+        name: hello
+        ports:
+        - containerPort: 5000
+        resources: {}
